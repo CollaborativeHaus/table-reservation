@@ -1,4 +1,5 @@
 jQuery(document).ready(function ($) {
+
   var canvas = new fabric.Canvas('c', {
     selection: false
   });
@@ -181,7 +182,6 @@ canvas.on('mouse:up', function (o) {
       top: circle.top + 10,
       left: circle.left + 10,
       selectable: false,
-      opacity: 0,
       lockMovementX: true,
       lockMovementY: true,
       lockScalingX: true,

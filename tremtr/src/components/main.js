@@ -121,10 +121,13 @@ $("#add").click(function(){
       var table = new fabric.Text(circle.name[0].toString(), {
         fontSize: 35, 
         id: canvasObjectId,
+        opacity: 0,
         top: circle.top-15,
         left: circle.left-7.5,
         selectable: false
       });
+
+      console.log(table);
 
       var icon_table = new fabric.Text("", {
         fontFamily: "FontAwesome",

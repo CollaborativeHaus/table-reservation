@@ -38,7 +38,7 @@
                 <div class="info-form">
                   <div class="form-element table">
                     <h4>{{calendarTimeInitData.translation.table}}</h4>
-                    <h4>№ {{table}} </h4>
+                    <h4>№ {{displayTable()}} </h4>
                   </div>
                   <div class="form-element guests" >
                     <h4>{{calendarTimeInitData.translation.for}}</h4>
@@ -1195,6 +1195,11 @@ export default {
         }
       
      
+    },
+
+    displayTable() {
+      console.log(this.table);
+      return this.table;
     }
   },
 

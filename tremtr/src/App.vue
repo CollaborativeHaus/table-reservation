@@ -30,7 +30,7 @@
                 <div class="info-form">
                   <div class="form-element table">
                     <h4>{{calendarTimeInitData.translation.table}}</h4>
-                    <h4>№ {{table}} </h4>
+                    <h4>№ {{displayTable()}} </h4>
                   </div>
                   <div class="form-element guests" >
                     <h4>{{calendarTimeInitData.translation.for}}</h4>
@@ -300,7 +300,7 @@ export default {
     this.initCanvas()
   
     document.getElementById('reservation').style.setProperty('--button-color', this.calendarTimeInitData.mainColor)
-
+    // document.getElementById('loading').remove();
   }, 
 
   computed: {
@@ -1011,7 +1011,6 @@ export default {
           let canvasObjectId = 0;
 
           for(let i = 0; i < this.canvas.getObjects().length; i+=3){
-            
             this.canvas.item(i).id = this.canvas.item(i + 1).text;
             this.canvas.item(i + 1).id = this.canvas.item(i + 1).text
             this.canvas.item(i + 2).id = this.canvas.item(i + 1).text
@@ -1030,7 +1029,7 @@ export default {
             });
 
             this.canvas.item(i+1).set({
-              opacity: 1,
+              opacity: 0,
               left: this.canvas.item(i).left + 10,
               top: this.canvas.item(i).top + 10,
               fontSize: 20,
@@ -1228,6 +1227,8 @@ export default {
           reservation.tremtr_reservation_time_end = moment(reservation.tremtr_reservation_time_end, this.dbTimeFormatForMoment).format(this.momentTimeFormat)
         }
 
+        document.getElementById('loading').remove();
+
       }, response => {
 
         // error callback 
@@ -1404,6 +1405,30 @@ export default {
         }
       
      
+    },
+
+    displayTable() {
+      /**
+       * For Mad Cravings, patio tables are not sequential, this will fake it.
+       */
+      switch (this.table) {
+        case "9":
+          return "35";
+        case "10":
+          return "36";
+        case "11":
+          return "33";
+        case "12":
+          return "34";
+        case "13":
+          return "32";
+        case "14":
+          return "31";
+        default:
+          break;
+      }
+
+      return this.table;
     }
   },
 

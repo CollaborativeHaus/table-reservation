@@ -230,6 +230,38 @@ if (!class_exists('TREMTableReservation')) :
 //                if( $this->reservation->check_nonce(sanitize_text_field($_POST['nonce'])) >= 3 ){
 //                    wp_send_json_error( array( 'error' => 'nonce_limit' ) );
 //                }
+               
+                /**
+                 * For Mad Cravings, patio tables are not sequential, this will fake it.
+                 */
+                // switch ($this->reservation->table) {
+                //   case 9:
+                //     $this->reservation->table = 35;
+                //     break;
+                  
+                //   case 10:
+                //     $this->reservation->table = 36;
+                //     break;
+
+                //   case 11:
+                //     $this->reservation->table = 33;
+                //     break;
+
+                //   case 12:
+                //     $this->reservation->table = 34;
+                //     break;
+
+                //   case 13:
+                //     $this->reservation->table = 32;
+                //     break;
+
+                //   case 14:
+                //     $this->reservation->table = 31;
+                //     break;
+                //   default:
+                //     break;
+                // }
+                // Done Mad Fakings.
 
                 $table_reservs = $this->reservation->get_table_reservations($this->reservation->reservation_date, $this->reservation->table);
                 if( !empty($table_reservs) ){
@@ -312,7 +344,15 @@ if (!class_exists('TREMTableReservation')) :
                 wp_enqueue_script( 'tremtr-vendor' );
                 wp_enqueue_script( 'tremtr-app' );
 
-                $content = '<div id="reservation" class="reservation"></div>';
+                $content = '
+                    <div class="flower-spinner" id="loading">
+                        <div class="dots-container">
+                            <div class="bigger-dot">
+                                <div class="smaller-dot"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="reservation" class="reservation"></div>';
             }
             
             return $content;
@@ -376,9 +416,9 @@ if (!class_exists('TREMTableReservation')) :
 
             wp_register_script('tremtr-fabric', TREMTR_PLUGIN_URL . '/assets/js/fabric.min.js');
 
-            wp_register_script('tremtr-manifest', TREMTR_PLUGIN_URL . '/assets/js/manifest.bd32a1190d98082efd29.js', array(), '1.0.0', 'screen, all');
+            wp_register_script('tremtr-manifest', TREMTR_PLUGIN_URL . '/assets/js/manifest.be082a86970c33ae76bd.js', array(), '1.0.0', 'screen, all');
             wp_register_script('tremtr-vendor', TREMTR_PLUGIN_URL . '/assets/js/vendor.3caab34dba32a52c51c9.js', array(), '1.0.0', 'screen, all');
-            wp_register_script('tremtr-app', TREMTR_PLUGIN_URL . '/assets/js/app.35d010e0528d0a40a37f.js', array(), '1.0.0', 'screen, all');
+            wp_register_script('tremtr-app', TREMTR_PLUGIN_URL . '/assets/js/app.4280585849c9b51c3615.js', array(), '1.0.0', 'screen, all');
             // wp_register_script( 'tremtr-app', 'http://localhost:8080/app.js' , '', '', true );
             wp_localize_script(
                 'tremtr-app',
